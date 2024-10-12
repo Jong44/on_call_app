@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:one_call_app/app/widgets/button.dart';
 import 'package:one_call_app/app/widgets/square_tile.dart';
 import 'package:one_call_app/app/widgets/textfield.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
-  // text editing controllers
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  // Sign User In method
-  void signUserIn() {}
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +40,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     MyTextField(
-                      controller: emailController,
+                      controller: null,
                       hintText: 'Masukkan Email',
                       obscureText: false,
                     ),
@@ -70,7 +64,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     MyTextField(
-                      controller: passwordController,
+                      controller: null,
                       hintText: 'Masukkan Password',
                       obscureText: true,
                     ),
@@ -96,7 +90,9 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 41),
               // sign in button
               MyButton(
-                onTap: signUserIn,
+                onTap: () {
+                  Get.offNamed('/');
+                },
               ),
 
               const SizedBox(height: 72),

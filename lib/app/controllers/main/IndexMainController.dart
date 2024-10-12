@@ -5,7 +5,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:one_call_app/app/services/MapsService.dart';
 import 'package:one_call_app/app/views/main/menus/ContactPage.dart';
 import 'package:one_call_app/app/views/main/menus/HomePage.dart';
 import 'package:one_call_app/app/views/main/menus/InformationPage.dart';
