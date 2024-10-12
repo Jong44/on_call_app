@@ -1,0 +1,30 @@
+import 'package:get/get.dart';
+import 'package:one_call_app/app/bindings/EmergencyDetailBindings.dart';
+import 'package:one_call_app/app/bindings/IndexMainBindings.dart';
+import 'package:one_call_app/app/bindings/MapBindings.dart';
+import 'package:one_call_app/app/views/main/detail/EmergencyDetail.dart';
+import 'package:one_call_app/app/views/main/detail/MapPage.dart';
+import 'package:one_call_app/app/views/main/indexMain.dart';
+
+class AppPages {
+  static final pages = [
+    GetPage(
+      name: "/",
+      page: () => const IndexMain(),
+      binding: IndexMainBindings(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: "/emergency-detail",
+      page: () => const EmergencyDetail(),
+      binding: EmergencyDetailBindings(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: "/emergency-map",
+      page: () => const MapPage(),
+      binding: MapBindings(),
+      transition: Transition.fadeIn,
+    ),
+  ];
+}
