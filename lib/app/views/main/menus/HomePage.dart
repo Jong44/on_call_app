@@ -36,6 +36,15 @@ class HomePage extends StatelessWidget {
               ],
             ),
             Obx(() {
+              if (controller.address.value.isEmpty) {
+                return const Text(
+                  'Menunggu lokasi',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey,
+                  ),
+                );
+              }
               return Text(
                 controller.address.value,
                 style: const TextStyle(

@@ -9,6 +9,7 @@ class MapController extends GetxController {
   var currentPosition = LatLng(0, 0).obs;
   var markerPosition = LatLng(0, 0).obs;
   final markers = <Marker>{};
+  var address = ''.obs;
 
   @override
   void onInit() {
@@ -22,12 +23,13 @@ class MapController extends GetxController {
     prefs = await SharedPreferences.getInstance();
     latitude = prefs.getDouble('latitude') ?? 0;
     longitude = prefs.getDouble('longitude') ?? 0;
+    address.value = prefs.getString('address') ?? '';
 
     currentPosition.value = LatLng(latitude, longitude);
     markers.add(Marker(
       markerId: MarkerId('1'),
       position: LatLng(latitude, longitude),
     ));
-    print('latitude: $latitude, longitude: $longitude');
+    print('latitude: $latitude, longitude: $longitude, address: $address');
   }
 }

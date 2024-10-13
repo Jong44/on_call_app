@@ -13,6 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IndexMainController extends GetxController {
+  var isLoading = false.obs;
   late SharedPreferences prefs;
   LatLng currentPosition = const LatLng(0, 0);
   var address = ''.obs;
@@ -66,6 +67,7 @@ class IndexMainController extends GetxController {
   }
 
   Future<void> getCurrentLocation() async {
+    isLoading.value = true;
     var status = await Permission.location.request();
     if (status.isGranted) {
       isPermissionGranted.value = true;
@@ -80,11 +82,15 @@ class IndexMainController extends GetxController {
     } else {
       isPermissionGranted.value = false;
     }
+    isLoading.value = false;
   }
 
   void _getAddressFromLatLng(LatLng position) async {
+    isLoading.value = true;
     final address =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     this.address.value = address.first.street.toString();
+    prefs.setString('address', address.first.street.toString());
+    isLoading.value = false;
   }
 }
