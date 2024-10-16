@@ -14,11 +14,13 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
+        style: const TextStyle(fontSize: 14),
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xffd8dadc)),

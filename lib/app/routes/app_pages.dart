@@ -3,11 +3,9 @@ import 'package:one_call_app/app/bindings/ChatBindings.dart';
 import 'package:one_call_app/app/bindings/EmergencyDetailBindings.dart';
 import 'package:one_call_app/app/bindings/GrupBindings.dart';
 import 'package:one_call_app/app/bindings/IndexMainBindings.dart';
-import 'package:one_call_app/app/bindings/LoginBindings.dart';
+import 'package:one_call_app/app/bindings/AuthBindings.dart';
 import 'package:one_call_app/app/bindings/MapBindings.dart';
-import 'package:one_call_app/app/bindings/RegisterBindings.dart';
-import 'package:one_call_app/app/views/auth/login/LoginPage.dart';
-import 'package:one_call_app/app/views/auth/register/RegisterPage.dart';
+import 'package:one_call_app/app/views/auth/AuthPage.dart';
 import 'package:one_call_app/app/views/main/detail/ChatPage.dart';
 import 'package:one_call_app/app/views/main/detail/EmergencyDetail.dart';
 import 'package:one_call_app/app/views/main/detail/GrupDetailPage.dart';
@@ -35,15 +33,9 @@ class AppPages {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: "/login",
-      page: () => const LoginPage(),
-      binding: LoginBindings(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(
-      name: "/register",
-      page: () => const RegisterPage(),
-      binding: RegisterBindings(),
+      name: "/auth",
+      page: () => const AuthPage(),
+      binding: AuthBindings(),
       transition: Transition.fadeIn,
     ),
     GetPage(
