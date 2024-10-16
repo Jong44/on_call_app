@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:one_call_app/app/config/ColorConfig.dart';
 import 'package:one_call_app/app/widgets/ItemGrup.dart';
+import 'package:one_call_app/app/widgets/SearchBar.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -45,40 +47,19 @@ class ContactPage extends StatelessWidget {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 10,
-                      offset: const Offset(0, 1),
-                    ),
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: TextField(
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    hintText: 'Cari Group',
-                    hintStyle: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                    ),
-                    border: InputBorder.none,
-                  ),
-                ),
+              SearchBars(
+                hintText: 'Search Group',
+                onChanged: (value) {},
               ),
               const SizedBox(height: 30),
               Expanded(
                 child: ListView.builder(
                   itemCount: 5,
-                  itemExtent: 80,
                   itemBuilder: (context, index) {
                     return ItemGrup(
+                      onTap: () {
+                        Get.toNamed('/grup/$index');
+                      },
                       image: 'assets/images/group.png',
                       title: 'Group $index',
                       subtitle: "10 Contacts",
