@@ -45,10 +45,10 @@ class InformationPage extends StatelessWidget {
                     return InkWell(
                       onTap: () {},
                       child: const CardInformation(
-                        title: "Community",
-                        description: "Community Description",
-                        category: "Community",
-                        image: "assets/images/community1.jpg",
+                        title: "Semarang Hebat ",
+                        description: "Ciptakan Semarang Aman dan Nyaman",
+                        category: "Umum",
+                        image: "assets/images/card1.png",
                       ),
                     );
                   },

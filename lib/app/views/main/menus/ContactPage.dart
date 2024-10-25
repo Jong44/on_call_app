@@ -54,7 +54,7 @@ class ContactPage extends StatelessWidget {
               const SizedBox(height: 30),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     return ItemGrup(
                       onTap: () {
@@ -62,7 +62,7 @@ class ContactPage extends StatelessWidget {
                       },
                       image: 'assets/images/group.png',
                       title: 'Group $index',
-                      subtitle: "10 Contacts",
+                      subtitle: "2 Contacts",
                     );
                   },
                 ),

@@ -38,7 +38,7 @@ class CardInformation extends StatelessWidget {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: NetworkImage(
+                    image: AssetImage(
                       image,
                     ),
                     fit: BoxFit.cover,

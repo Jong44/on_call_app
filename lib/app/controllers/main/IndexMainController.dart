@@ -1,16 +1,19 @@
 import 'dart:async';
 
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:one_call_app/app/controllers/fitur/VoiceController.dart';
 import 'package:one_call_app/app/views/main/menus/ContactPage.dart';
 import 'package:one_call_app/app/views/main/menus/HomePage.dart';
 import 'package:one_call_app/app/views/main/menus/InformationPage.dart';
 import 'package:one_call_app/app/views/main/menus/ProfilePage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workmanager/workmanager.dart';
 
 class IndexMainController extends GetxController {
   var isLoading = false.obs;
@@ -37,11 +40,17 @@ class IndexMainController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     getCurrentLocation();
+    getPermissionVoice();
     init();
   }
 
   void init() async {
     prefs = await SharedPreferences.getInstance();
+    Workmanager().registerOneOffTask(
+      '1',
+      'changePage',
+    );
+    print('Workmanager registered');
   }
 
   void changeIndex(int index) {
@@ -92,5 +101,14 @@ class IndexMainController extends GetxController {
     this.address.value = address.first.street.toString();
     prefs.setString('address', address.first.street.toString());
     isLoading.value = false;
+  }
+
+  void getPermissionVoice() async {
+    final status = await Permission.microphone.request();
+    if (status == PermissionStatus.granted) {
+      Get.put(VoiceController());
+    } else {
+      print('Permission denied');
+    }
   }
 }

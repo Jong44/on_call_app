@@ -59,17 +59,20 @@ class GrupDetailPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Column(
-                  children: List.generate(10, (index) {
-                    return ItemContact(
-                      onTap: () {
-                        Get.toNamed('/grup/chat/$index');
-                      },
-                      imageUrl: "https://via.placeholder.com/150",
-                      name: "John Doe",
-                      message: "Hello, how are you?",
-                      time: "10:00",
-                      isRead: false,
-                    );
+                  children:
+                      List.generate(controller.contactList.length, (index) {
+                    return Obx(() {
+                      return ItemContact(
+                        onTap: () {
+                          Get.toNamed('/grup/chat/$index');
+                        },
+                        imageUrl: "https://via.placeholder.com/150",
+                        name: controller.contactList[index]['name'],
+                        message: "Hello",
+                        time: "10:00",
+                        isRead: false,
+                      );
+                    });
                   }),
                 ),
               ],
