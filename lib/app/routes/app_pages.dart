@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:one_call_app/app/bindings/ChatBindings.dart';
-import 'package:one_call_app/app/bindings/EmergencyDetailBindings.dart';
 import 'package:one_call_app/app/bindings/GrupBindings.dart';
 import 'package:one_call_app/app/bindings/IndexMainBindings.dart';
 import 'package:one_call_app/app/bindings/AuthBindings.dart';
@@ -23,7 +22,7 @@ class AppPages {
     GetPage(
       name: "/emergency-detail",
       page: () => const EmergencyDetail(),
-      binding: EmergencyDetailBindings(),
+      binding: MapBindings(),
       transition: Transition.fadeIn,
     ),
     GetPage(

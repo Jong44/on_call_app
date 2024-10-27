@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:one_call_app/app/config/ColorConfig.dart';
 import 'package:one_call_app/app/controllers/main/MapController.dart';
 import 'package:one_call_app/app/widgets/CardLokasiMap.dart';
-import 'package:one_call_app/app/widgets/textfield.dart';
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
@@ -14,16 +12,19 @@ class MapPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final MapController controller = Get.put(MapController());
     return Scaffold(body: Obx(() {
-      if (controller.currentPosition.value == const LatLng(0, 0)) {
+      if (controller.origin == const LatLng(0, 0)) {
         return const Center(child: CircularProgressIndicator());
       }
       return Stack(
         children: [
-          GoogleMap(
-            markers: controller.markers,
-            initialCameraPosition: CameraPosition(
-                target: controller.currentPosition.value, zoom: 15),
-          ),
+          Obx(() {
+            return GoogleMap(
+              polylines: controller.polyline.value,
+              markers: controller.markers,
+              initialCameraPosition:
+                  CameraPosition(target: controller.origin, zoom: 15),
+            );
+          }),
           CardLokasiMap(
             locationUser: controller.address.value,
             locationRelawan: controller.address.value,
@@ -64,10 +65,10 @@ class MapPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: ColorConfig.primaryColor.withOpacity(0.05),
                           ),
-                          child: const Text(
-                            "10 min",
+                          child: Text(
+                            controller.duration.value,
                             maxLines: 2,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: ColorConfig.primaryColor,
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
@@ -87,12 +88,12 @@ class MapPage extends StatelessWidget {
                               CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                    const AssetImage("assets/images/1.jpg"),
+                                    AssetImage("assets/images/1.jpg"),
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Aprilian Tanjung",
                                     style: TextStyle(
@@ -127,7 +128,7 @@ class MapPage extends StatelessWidget {
                                   decoration: InputDecoration(
                                     hintText: "Type a message",
                                     border: InputBorder.none,
-                                    contentPadding: const EdgeInsets.symmetric(
+                                    contentPadding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 5),
                                   ),
                                 ),

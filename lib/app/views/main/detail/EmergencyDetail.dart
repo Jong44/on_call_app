@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:one_call_app/app/controllers/main/EmergencyDetailController.dart';
+import 'package:one_call_app/app/controllers/main/MapController.dart';
 import 'package:one_call_app/app/widgets/CircleEmergency.dart';
 
 class EmergencyDetail extends StatelessWidget {
@@ -8,8 +8,7 @@ class EmergencyDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EmergencyDetailController controller =
-        Get.put(EmergencyDetailController());
+    final MapController mapController = Get.put(MapController());
     return Scaffold(
       body: SafeArea(
         child: Padding(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:one_call_app/app/controllers/auth/AuthBindings.dart';
+import 'package:one_call_app/app/controllers/auth/AuthController.dart';
 import 'package:one_call_app/app/utils/SnackBarCustom.dart';
 import 'package:one_call_app/app/widgets/button.dart';
 import 'package:one_call_app/app/widgets/square_tile.dart';
@@ -97,12 +97,12 @@ class AuthPage extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               // username textfield
-              const Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Alamat Email",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -110,7 +110,7 @@ class AuthPage extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     MyTextField(
-                      controller: null,
+                      controller: controller.emailController,
                       hintText: 'Masukkan Email',
                       obscureText: false,
                     ),
@@ -121,12 +121,12 @@ class AuthPage extends StatelessWidget {
               const SizedBox(height: 22),
 
               // password textfield
-              const Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Password",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -134,7 +134,7 @@ class AuthPage extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     MyTextField(
-                      controller: null,
+                      controller: controller.passwordController,
                       hintText: 'Masukkan Password',
                       obscureText: true,
                     ),
@@ -151,7 +151,7 @@ class AuthPage extends StatelessWidget {
                 if (controller.isLogin.value) {
                   return const SizedBox();
                 }
-                return const Padding(
+                return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +164,7 @@ class AuthPage extends StatelessWidget {
                       ),
                       SizedBox(height: 6),
                       MyTextField(
-                        controller: null,
+                        controller: controller.confirmPasswordController,
                         hintText: 'Masukkan Password',
                         obscureText: true,
                       ),
@@ -198,7 +198,15 @@ class AuthPage extends StatelessWidget {
               Obx(() {
                 return MyButton(
                   onTap: () {
-                    Get.offNamed('/');
+                    if (!controller.isLoading.value) {
+                      if (controller.isLogin.value) {
+                        controller.handleLogin();
+                      } else {
+                        controller.handleRegister();
+                      }
+                    } else {
+                      print('loading');
+                    }
                   },
                   text: controller.isLogin.value ? 'Masuk' : 'Daftar',
                 );
